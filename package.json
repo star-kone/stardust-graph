@@ -4,7 +4,8 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ star-kone/stardust-graph",
+    "deploy": "graph deploy --product hosted-service star-kone/stardust-graph",
+    "deploy2": "graph deploy --node https://api.thegraph.com/deploy/ star-kone/stardust-graph",
     "create-local": "graph create --node http://localhost:8020/ star-kone/stardust-graph",
     "remove-local": "graph remove --node http://localhost:8020/ star-kone/stardust-graph",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 star-kone/stardust-graph"

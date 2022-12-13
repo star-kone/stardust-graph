@@ -1,6 +1,27 @@
-type ExampleEntity @entity {
+type SDFactory @entity {
+    id: ID!
+    airdropCount: Int!
+}
+
+type SDAirdrop @entity {
+    id: ID!
+    name: String!
+    token: Token!
+    owner: Bytes!
+    identifier: SDIdentifier!
+    balance: BigDecimal!
+    claimAmount: BigDecimal!
+}
+
+type SDIdentifier @entity {
+    id: ID!
+    name: String!
+    description: String!
+}
+
+type Token @entity {
   id: ID!
-  count: BigInt!
-  account: Bytes! # address
-  token: Bytes! # address
+  symbol: String!
+  name: String!
+  decimals: Int!
 }

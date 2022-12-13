@@ -6,24 +6,60 @@ dataSources:
     name: SDFactory
     network: goerli
     source:
-      address: "0x325d7CF7e8C9e52D51B54501c66ae96359829F8c"
+      address: "0xaEFfBba4eae7A7431398af95Df52EEeD953226A3"
       abi: SDFactory
+      startBlock: 8126093
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - AirdropCreated
-        - IdentifierChanged
-        - OwnershipTransferred
+        - SDFactory
+        - SDAirdrop
+        - SDIdentifier
+        - Token
       abis:
         - name: SDFactory
           file: ./abis/SDFactory.json
+        - name: SDAirdrop
+          file: ./abis/SDAirdrop.json
+        - name: SDIdentifier
+          file: ./abis/SDIdentifier.json
+        - name: Token
+          file: ./abis/Token.json
       eventHandlers:
-        - event: AirdropCreated(indexed address,indexed address)
+        - event: AirdropCreated(indexed address,address,string,indexed address,address)
           handler: handleAirdropCreated
         - event: IdentifierChanged(indexed string,indexed address)
           handler: handleIdentifierChanged
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-      file: ./src/sd-factory.ts
+      file: ./src/factory.ts
+
+templates:
+  - kind: ethereum/contract
+    name: Airdrop
+    network: goerli
+    source:
+      abi: SDAirdrop
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - SDAirdrop
+        - SDIdentifier
+        - Token
+      abis:
+        - name: SDFactory
+          file: ./abis/SDFactory.json
+        - name: SDAirdrop
+          file: ./abis/SDAirdrop.json
+        - name: Token
+          file: ./abis/Token.json
+      eventHandlers:
+        - event: Deposited(indexed address,uint256,uint256)
+          handler: handleDeposited
+        - event: Withdrawn(indexed address,uint256)
+          handler: handleWithdrawn
+        - event: Claimed(indexed address,uint256)
+          handler: handleClaimed
+      file: ./src/airdrop.ts
