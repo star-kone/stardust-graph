@@ -1,5 +1,5 @@
 import {AirdropCreated, IdentifierChanged} from "../generated/SDFactory/SDFactory"
-import {SDAirdrop, SDIdentifier, SDFactory, Token} from "../generated/schema"
+import {SDAirdrop, SDIdentifier, SDFactory, Token, MethodId} from "../generated/schema"
 import {FACTORY_ADDRESS, ZERO_BD} from "./helpers";
 import {Airdrop as AirdropTemplate} from "../generated/templates";
 import {SDIdentifier as SDIdentifierContract} from "../generated/SDFactory/SDIdentifier";
@@ -52,5 +52,13 @@ export function handleIdentifierChanged(event: IdentifierChanged): void {
         ident.name = contract.name();
         ident.description = contract.description();
         ident.save();
+    }
+
+    let _methodId = event.params.methodId;
+    let methodId = MethodId.load(_methodId);
+    if (methodId == null) {
+        let methodId = new MethodId(_methodId);
+        methodId.identifier = identId;
+        methodId.save();
     }
 }

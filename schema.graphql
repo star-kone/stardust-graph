@@ -8,7 +8,7 @@ type SDAirdrop @entity {
     name: String!
     token: Token!
     owner: Bytes!
-    identifier: SDIdentifier!
+    identifier: SDIdentifier
     balance: BigDecimal!
     claimAmount: BigDecimal!
 }
@@ -24,4 +24,9 @@ type Token @entity {
   symbol: String!
   name: String!
   decimals: Int!
+}
+
+type MethodId @entity {
+  id: ID!
+  identifier: SDIdentifier!
 }
