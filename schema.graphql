@@ -11,6 +11,7 @@ type SDAirdrop @entity {
     identifier: SDIdentifier
     balance: BigDecimal!
     claimAmount: BigDecimal!
+    createTimestamp: BigInt!
 }
 
 type SDIdentifier @entity {

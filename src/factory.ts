@@ -36,6 +36,7 @@ export function handleAirdropCreated(event: AirdropCreated): void {
     airdrop.identifier = event.params.identifier.toHex();
     airdrop.balance = ZERO_BD;
     airdrop.claimAmount = ZERO_BD;
+    airdrop.createTimestamp = event.block.timestamp;
 
     // create the tracked contract based on the template
     AirdropTemplate.create(event.params.airdrop);
