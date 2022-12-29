@@ -6,6 +6,7 @@ type SDFactory @entity {
 type SDAirdrop @entity {
     id: ID!
     name: String!
+    description: String
     token: Token!
     owner: Bytes!
     identifier: SDIdentifier

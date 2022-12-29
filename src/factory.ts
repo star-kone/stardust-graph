@@ -31,6 +31,7 @@ export function handleAirdropCreated(event: AirdropCreated): void {
     // create airdrop
     let airdrop = new SDAirdrop(event.params.airdrop.toHex());
     airdrop.name = event.params.name;
+    airdrop.description = event.params.description;
     airdrop.token = token.id;
     airdrop.owner = event.params.owner;
     airdrop.identifier = event.params.identifier.toHex();
