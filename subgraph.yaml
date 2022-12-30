@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: SDFactory
-    network: goerli
+    network: matic
     source:
-      address: "0xf2B5276d0Ae420800871Db1c6BBA777448C337B4"
       abi: SDFactory
-      startBlock: 8219817
+      address: "0xc0a7eD8c1A2F401217366430D395977A2B57fc25"
+      startBlock: 37444264
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -29,16 +29,16 @@ dataSources:
         - name: Token
           file: ./abis/Token.json
       eventHandlers:
-        - event: AirdropCreated(indexed address,address,string,string,indexed address,address)
+        - event: AirdropCreated(indexed address,address,string,string,indexed
+            address,address)
           handler: handleAirdropCreated
         - event: IdentifierChanged(string,indexed address)
           handler: handleIdentifierChanged
       file: ./src/factory.ts
-
 templates:
   - kind: ethereum/contract
     name: Airdrop
-    network: goerli
+    network: matic
     source:
       abi: SDAirdrop
     mapping:
